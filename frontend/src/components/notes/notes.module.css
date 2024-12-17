@@ -36,9 +36,9 @@
   align-items: center;
   width: 50%;
   gap: 30px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 900px; 
+  /* overflow-y: auto;
+  overflow-x: hidden; */
+  /* max-height: 900px;  */
 }
 
 .container_notes::-webkit-scrollbar {
