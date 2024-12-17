@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { Note } from './notes.entity';
 import { Category } from '../categories/categories.entity';
+import { UUID } from 'typeorm/driver/mongodb/bson.typings';
+import { User } from '../users/users.entity';
 
 @Injectable()
 export class NotesService {
@@ -11,27 +13,34 @@ export class NotesService {
     private readonly notesRepository: Repository<Note>,
     @InjectRepository(Category)
     private readonly categoriesRepository: Repository<Category>,
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
   ) {}
 
-  async getAllNotesService(): Promise<Note[]> {
+  async getAllNotesService(
+    userReqId: UUID
+  ): Promise<Note[]> {
     return this.notesRepository.find({
-      where: { archived: false },
+      where: { archived: false,  user: {id: userReqId}},
       relations: ['categories']
     });
   }
 
-  async getNotesAchivedService(): Promise<Note[]> {
+  async getNotesAchivedService(
+    userReqId: UUID
+  ): Promise<Note[]> {
     return this.notesRepository.find({
-      where: { archived: true },
+      where: { archived: true, user: { id: userReqId } },
       relations: ['categories']
     });
   }
 
   async getNoteByIdService(
-    id: number
+    id: number,
+    userReqId: UUID
   ): Promise<Note> {
     const noteFound = await this.notesRepository.findOne({
-      where: { id: id }, 
+      where: { id: id, user: {id: userReqId} }, 
       relations: ['categories'],
     });
 
@@ -41,10 +50,12 @@ export class NotesService {
   }
 
   async getNotesByCategoryService(
-    category: string
+    category: string,
+    userReqId: UUID
   ): Promise<Note[]> {      
     const categoryToLowerCase = category.toLowerCase()
     const allNotes = await this.notesRepository.find({
+      where: {user: {id: userReqId}},
       relations: ['categories']
     });
     
@@ -58,7 +69,8 @@ export class NotesService {
   async createNoteService(
     title: string,
     content: string,
-    categoryNames: string[]
+    categoryNames: string[],
+    userReqId: UUID
   ): Promise<Note> {
     const categories = await Promise.all(
       categoryNames.map(async (name) => {
@@ -75,17 +87,24 @@ export class NotesService {
         return category;
       }),
     );
-
-    const note = this.notesRepository.create({ title, content, categories });
+    
+    const userFound: any = await this.usersRepository.findOne({
+      where: { id: userReqId },
+      select: ['id', 'email']
+    })
+    
+    const note = this.notesRepository.create({ title, content, categories, user: userFound });
+    
     return this.notesRepository.save(note);
   }
 
   async updateNoteService(
     noteId: number,
-    updateNote: Partial<Note>
+    updateNote: Partial<Note>,
+    userReqId: UUID
   ): Promise<Note> {
     const noteFound = await this.notesRepository.findOne({
-      where: { id: noteId },
+      where: { id: noteId, user: {id: userReqId} },
       relations: ['categories']
     }) 
 
@@ -98,10 +117,11 @@ export class NotesService {
 
   async deleteCategoryFromNoteService(
     noteId: number,
-    category: string
+    category: string,
+    userReqId: UUID
   ): Promise<Note>{
     const noteFound = await this.notesRepository.findOne({
-      where: { id: noteId },
+      where: { id: noteId, user: {id: userReqId}},
       relations: ['categories']
     }) 
 
@@ -115,10 +135,12 @@ export class NotesService {
   }
 
   async deleteNoteService(
-    id: number
+    id: number,
+    userReqId: UUID
   ): Promise<string> {
     const noteFound = await this.notesRepository.findOneBy({
-      id: id
+      id: id,
+      user: { id: userReqId }
     })
 
     if (!noteFound) throw new NotFoundException(`Note with ID ${id} not found`)

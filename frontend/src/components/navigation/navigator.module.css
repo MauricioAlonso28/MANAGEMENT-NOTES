@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   padding: 30px 5px;
+  position: relative;
 }
 
 .container_btns {
@@ -30,4 +31,24 @@
 
 .btn_to_nav:hover {
   background-color: rgb(255, 255, 255);
+}
+
+.btn_logout {
+  position: absolute;
+  bottom: 100px;
+  width: 160px;
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px 5px;
+  border-color: transparent;
+  border-radius: 6px;
+  background-color: rgb(37, 91, 170);
+  color: #eaebeb;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+.btn_logout:hover {
+  background-color: rgb(91, 135, 201);
 }

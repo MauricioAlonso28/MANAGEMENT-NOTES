@@ -1,0 +1,122 @@
+.form_container {
+  background-color: #fff;
+  height: 460px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container_btn_header,
+.container_btn_body {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  padding: 20px;
+  /* gap: 0px; */
+}
+
+.container_btn_header {
+  height: 40%;
+}
+
+.container_btn_body {
+  height: 60%;
+  align-items: center;
+}
+
+.input_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* .input_container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.input_auth {
+  font-size: 15px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  width: 90%;
+  border: 1px solid rgb(232, 224, 224);
+  background-color: rgb(231, 225, 225);
+  font-weight: 100;
+}
+
+.input_auth {
+  font-size: 15px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  width: 90%;
+  border: 1px solid rgb(178, 174, 174);
+  font-weight: 100;
+  color: rgb(2, 2, 2);
+}
+
+hr {
+  width: 95%;
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0;
+}
+
+.link_login,
+.link_register {
+  border-radius: 5px;
+  font-size: 17px;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all .2s ease-in;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link_login {
+  background-color: #1877f2;
+  color: #fff;
+}
+
+.link_login:hover {
+  background-color: #1c65c5;
+}
+.link_login:disabled {
+  background-color: #97b9e6;
+}
+
+.link_register {
+  background-color: #42b72a;
+  color: #fff;
+}
+
+.link_register:hover {
+  background-color: #36a420;
+}
+
+.input_auth:focus-visible {
+  outline: none;
+  border: 1px solid green;
+  caret-color: green;
+}
+
+.error {
+  position: absolute;
+  top: 50px;
+  color: red;
+  font-size: 10px;
+}

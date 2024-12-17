@@ -1,6 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import SearchBar from '../search/SearchBar'
 import styles from './navigator.module.css'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../../store/store'
+import { signOut } from '../../thunks/userThunks'
 
 type Props = {
   onPress: Function
@@ -9,6 +12,7 @@ type Props = {
 const Navigator = (props: Props) => {
   const navigate = useNavigate()
   const location = useLocation()
+  const dispatch = useDispatch<AppDispatch>()
 
   return (
     <nav className={styles.container_navigator}>
@@ -46,6 +50,15 @@ const Navigator = (props: Props) => {
           )
         }
       </div>
+      <button
+        onClick={() => {
+          dispatch(signOut())
+          window.location.reload()
+        }}
+        className={styles.btn_logout}
+      >
+        Logout 
+      </button>
     </nav>
   )
 }

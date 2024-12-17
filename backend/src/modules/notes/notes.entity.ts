@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, ManyToOne, JoinColumn } from 'typeorm';
 import { Category } from '../categories/categories.entity';
+import { User } from '../users/users.entity';
 
 @Entity('notes') 
 export class Note {
@@ -21,6 +22,11 @@ export class Note {
     
   @JoinTable() 
   categories: Category[];
+    
+  @ManyToOne(() => User, (user) => user.notes, { onDelete: 'CASCADE' }) 
+  @JoinColumn({ name: 'userId' })
+  user: User;
+
     
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }) 
   createdAt: Date;

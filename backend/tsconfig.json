@@ -15,5 +15,5 @@
       "@modules": ["./src/modules/*"],
       "@databases": ["./src/databases/*"],
     }
-  }
+  },
 }

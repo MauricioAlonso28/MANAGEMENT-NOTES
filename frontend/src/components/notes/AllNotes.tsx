@@ -12,7 +12,9 @@ const AllNotes = () => {
   const [noteId, setNoteId] = useState(0)
 
   useEffect(() => {
-    dispatch(getNotesByCategory(category))
+    if (category.length > 0) {
+      dispatch(getNotesByCategory(category))
+    }
   }, [dispatch, noteDetails])
 
   return (
@@ -41,7 +43,9 @@ const AllNotes = () => {
               </div>
             </>
           ) : (
+            <div className={styles.title_container}>
               <h2 className={styles.title}>You don't have any notes with this category</h2>
+            </div>
           )
         }
       </div>

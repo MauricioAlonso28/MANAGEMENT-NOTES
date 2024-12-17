@@ -6,7 +6,8 @@ const axiosInstance: AxiosInstance = axios.create({
   baseURL: URL_API,
   headers: {
     'Content-Type': 'application/json',
-  }
+  },
+  withCredentials: true,
 })
 
 axiosInstance.interceptors.response.use(

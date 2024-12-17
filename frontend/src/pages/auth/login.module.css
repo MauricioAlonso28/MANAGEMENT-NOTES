@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  height: 100%;
+  align-items: center;
+}
+
+.container_header {
+  height: 92%;
+  background-color: #ecefef;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_form {
+  position: relative;
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-top: 10px;
+}
+.container_footer {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+}
+
+.container_footer small {
+  color: gray;
+}
