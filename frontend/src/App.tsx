@@ -9,8 +9,6 @@ import LoginPage from './pages/auth/LoginPage'
 import { useEffect, useState } from 'react'
 import { verifyAuth } from './services/users.services'
 import { AuthProvider, useAuth } from './AuthContext'
-import { useSelector } from 'react-redux'
-import { RootState } from './store/store'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -32,7 +30,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* PUBLIC ROUTES */}
-          <Route path="/" element={<AuthGuard/>}/>
+          <Route path="/" element={<AuthGuard />}/>
 
           {/* PRIVATE ROUTES */}
           <Route element={<PrivateRoute />}>
@@ -51,7 +49,7 @@ function App() {
 
 const AuthGuard = () => {
   const { isAuthenticated } = useAuth();
-  if (isAuthenticated === null) return <div>Loading...</div>;
+  
   return isAuthenticated ? <MainPage /> : <LoginPage />;
 };
 
