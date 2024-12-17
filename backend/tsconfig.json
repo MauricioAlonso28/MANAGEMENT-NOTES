@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "module": "commonjs",
+    "target": "es2018",
+    "lib": ["es2018"],
+    "strict": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@authentication": ["./src/authentication/*"],
+      "@models": ["./src/models/*"],
+      "@modules": ["./src/modules/*"],
+      "@databases": ["./src/databases/*"],
+    }
+  }
+}

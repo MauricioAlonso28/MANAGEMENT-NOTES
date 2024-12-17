@@ -1,0 +1,33 @@
+.container_navigator {
+  background-color: rgb(3, 39, 93);
+  height: 100vh;
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 5px;
+}
+
+.container_btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 50px;
+  align-items: center;
+}
+
+.btn_to_nav {
+  width: 160px;
+  padding: 10px 5px;
+  border-color: transparent;
+  border-radius: 6px;
+  background-color: rgb(212, 228, 238);
+  color: #2f2836;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn_to_nav:hover {
+  background-color: rgb(255, 255, 255);
+}
