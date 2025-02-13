@@ -52,7 +52,7 @@ git clone <repository-url>
 cd <repository-folder>
 ```
 
-### 2. Create a MySQL database (e.g., notes_db)
+### 2. Create a MySQL database (e.g., app_notes)
 
 Update the database credentials in the .env file inside the backend folder.
 
@@ -60,7 +60,7 @@ Example .env file:
 
 DB_USER=root
 DB_PASSWORD=your_password
-DB_NAME=notes_db
+DB_NAME=app_notes
 DB_HOST=localhost
 DB_PORT=3306
 
