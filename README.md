@@ -113,4 +113,4 @@ Database Initialization: The script imports initial_data.sql into your MySQL dat
 Stop the Application: Use Ctrl + C to stop the servers.
 
 ## Author
-Mauricio Alonso Ayllón
+Mauricio Alonso Ayllón Varela
